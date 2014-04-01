@@ -33,16 +33,8 @@ class Configuration implements ConfigurationInterface
                             ->enumNode('language')
                                 ->values($this->getValidLanguages())
                                 ->beforeNormalization()
-                                ->always(function($v) {
-                                    if (isset($this->languageMappings[$v])) {
-                                        return $v;
-                                    }
-                                    foreach ($this->languageMappings as $language => $mappings) {
-                                        if (in_array($v, $mappings)) {
-                                            return $language;
-                                        }
-                                    }
-                                    throw new InvalidLanguageException("The selected language ('$v') is invalid or not yet supported.");
+                                ->always(function($v){
+                                    return $this->validateLanguage($v);
                                 })
                                 ->end()
                             ->end()
@@ -95,6 +87,19 @@ class Configuration implements ConfigurationInterface
                 ->end();    
 
         return $treeBuilder;
+    }
+    
+    private function validateLanguage($language)
+    {
+        if (isset($this->languageMappings[$language])) {
+            return $language;
+        }
+        foreach ($this->languageMappings as $mapped => $mappings) {
+            if (in_array($language, $mappings)) {
+                return $mapped;
+            }
+        }
+        throw new InvalidLanguageException("The selected language ('$language') is invalid or not yet supported.");
     }
     
     private function getValidLanguages()
