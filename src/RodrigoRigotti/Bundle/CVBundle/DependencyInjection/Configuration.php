@@ -14,7 +14,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
     private $languageMappings = array(
-        'php' => array('php3', 'php4', 'php5')
+        'php', 'js'
     );
     
     /**
@@ -32,11 +32,6 @@ class Configuration implements ConfigurationInterface
                         ->children()
                             ->enumNode('language')
                                 ->values($this->getValidLanguages())
-                                ->beforeNormalization()
-                                ->always(function($v){
-                                    return $this->validateLanguage($v);
-                                })
-                                ->end()
                             ->end()
                             ->arrayNode('options')
                                 ->prototype('array')
@@ -105,9 +100,10 @@ class Configuration implements ConfigurationInterface
     private function getValidLanguages()
     {
         $languages = array();
-        foreach ($this->languageMappings as $mapped => $mappings) {
-            $languages = array_merge($languages, array($mapped), $mappings);
-        }
+//        foreach ($this->languageMappings as $mapped => $mappings) {
+//            $languages = array_merge($languages, array($mapped), $mappings);
+//        }
+        $languages = $this->languageMappings;
         return $languages;
     }
 }
