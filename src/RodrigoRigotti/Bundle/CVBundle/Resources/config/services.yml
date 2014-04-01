@@ -1,0 +1,9 @@
+services:
+    rodrigo_rigotti.twig.php_extension:
+        class: RodrigoRigotti\Bundle\CVBundle\Twig\PhpExtension
+        tags:
+            - { name: twig.extension }
+    rodrigo_rigotti.twig.extras_extension:
+        class: RodrigoRigotti\Bundle\CVBundle\Twig\ExtrasExtension
+        tags:
+            - { name: twig.extension }

@@ -1,0 +1,65 @@
+rodrigo_rigotti_cv:
+    cvs:
+        rodrigo_rigotti:
+            language: php
+            options:
+                obfuscate_email: true
+            contact:
+                name: "Rodrigo Rigotti Mammano"
+                phones: [ "+55 11 98200-3298", "+55 11 3969-3298" ]
+                emails: [ "rodrigo@rodrigorigotti.com" ]
+            summary: |
+                Full stack developer with 10+ years of experience.
+                Experience with both front-end (UI and UX) and back-end development (programming, business logic and APIs), being PHP my main programming language (whether pure or frameworks – preferably Symfony 2, also Zend Framework 1/2 and Yii) and MySQL (under Doctrine 2 or not) my main database technology (database modeling, data extraction, SQL optimization).
+                I also have experience with web design by designing responsive HTML5-compliant websites (also CSS, JS, jQuery and Twitter Bootstrap).
+                Good knowledge on designing applications that consume APIs, such as Facebook, Twitter and Instagram; as well as providing APIs (open or under OAuth 2.0).
+                Experience with Amazon Web Services technologies, such as EC2, S3, RDS, SES, SQS, Route 53 and ElastiCache.
+                My programming workflow consists on TDD and BDD (unit tests, functional tests and acceptance tests) under virtual machines (VirtualBox + Vagrant + Puppet), with continuous integration using Jenkins and Capifony, code versioning using Git or SVN and debugging using PHP XDebug.
+            education:
+                - name: Universidade de São Paulo
+                  title: Bacharel em Sistemas de Informação
+                  since: 2010-01
+                  until: 2014-12
+            occupation:
+                - name:     UpLexis
+                  position: Senior PHP Developer
+                  since:    2012-12
+                  until:    2014-04
+                  description: |
+                    At UpLexis, my main responsibility was to propose, discuss, implement and test a new architecture for the legacy systems – within a programmer's point of view. Under this proposal, several applications were refactored so they could be more decoupled and easily testable.
+                    Other systems have been developed to improve this integration – mostly using Symfony 2 and Doctrine 2. To name a few, the login system became more reliable and the caching solution became global, instead of having per-application solutions. Furthermore, the crawler applications are now under a layer which controls, authorizes and logs every customer request.
+                    At last but not least, not only the applications were migrated to AWS but every application had its Vagrant configuration, making the development, testing and deploy processes more reliable.
+                - name:     Rocket Internet GmbH
+                  position: Senior PHP Developer
+                  since:    2011-10
+                  until:    2012-11
+                  description: |
+                    Developed applications with some most popular PHP frameworks, such as Symfony2, Yii Framework and Zend Framework. The jobs made with Symfony2 required learning about some of its components, like Doctrine (for database manipulation) and Twig (for template designing), in order to achieve the speed and scability that Rocket Internet's sites requires.
+                    I also had role designing sites and improving their layouts, again with an eye in improving their loading time, with techniques like CSS sprites and assets minification, in order to keep maintainability using the most compact code possible.
+                    Worked in many of Rocket Internet's ventures, namely Kanui, Mobly, Westwing, YepDoc, Zocprint, among others.
+                - name:     Catho Online
+                  position: Web Developer
+                  since:    2009-12
+                  until:    2011-10
+                  description: |
+                    I've worked for 6 months in the products team and then began working for the SEO team developing internal tools for an wide array of purposes. The main goal is to analyze the evolution of the team's results over time, since SEO is – in many cases – a mid-term and long-term work.
+                    Many skills have been improved since I've joined the company, such as the development of PHP applications using APIs like Google AdWords and Adobe Omniture; database modeling and SQL skills using MySQL; and the development of front-end and back-end web applications, for the internal team or general public, using most web technologies.
+                - name:     Voxline Contact Center
+                  position: Web Developer
+                  since:    2008-03
+                  until:    2009-12
+                  description: |
+                    At Voxline my main work was to develop a delivery website to Ragazzo Fast Food – which was part of the company's group and only offered deliveries via telephone – and later I began working on Habib's delivery website.
+                    I've also worked in the intranet and later in the company's website, and produced offline content for indoor and outdoor use.
+                - name:     Midhaus Web Design
+                  position: Web Designer
+                  since:    2004-08
+                  until:    2008-03
+                  description: |
+                    When I joined the company, it started to gradually change from offline to online advertising, offering to its clients – mostly small and medium-sized companies – an interesting solution for online advertising. Later, the company algo offered full websites to its range of clients.
+                    In the last year I've managed a small development team and participated in all stages of a website development and hosting, such as briefing, design, programming, hosting and support.
+            languages:
+                - name: portuguese
+                  level: native
+                - name: english
+                  level: advanced

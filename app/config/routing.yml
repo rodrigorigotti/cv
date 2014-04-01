@@ -1,0 +1,3 @@
+rodrigo_rigotti:
+    resource: "@RodrigoRigottiCVBundle/Controller"
+    type:     annotation

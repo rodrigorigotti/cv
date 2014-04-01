@@ -1,0 +1,80 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<pre><code class="hljs php">
+{{ '<?php'|e }}
+
+namespace CV;
+
+class {{ contact.name|generate_class_name }} implements CV\CVInterface
+{
+{% if contact.emails %}
+    public $name   = '{{ contact.name }}';
+{% endif %}
+{% if contact.emails %}
+    public $emails = array('{{ contact.emails|obfuscate_emails|join("', '") }}');
+{% endif %}
+{% if contact.phones %}
+    public $phones = array('{{ contact.phones|obfuscate_emails|join("', '") }}');
+{% endif %}
+    
+    /**
+     * My professional summary.
+     */
+    public function getSummary()
+    {
+        return
+{{ summary|trim|generate_text_block('"', 3, ".") }};
+    }
+
+    /**
+     * My education.
+     */
+    public function getEducation()
+    {
+        return array(
+{% for i, institution in education %}
+            (new CV\Institution)
+                ->setName('{{ institution.name }}')
+                ->setTitle('{{ institution.title }}')
+                ->setSince(new \DateTime('{{ institution.since }}'))
+                ->setUntil(new \DateTime('{{ institution.until }}')){% if i == (education|length)-1 %});{% else %},{% endif %}
+
+{% endfor %}
+    }
+
+    /**
+     * Occupations over the time.
+     */
+    public function getOccupation()
+    {
+        return array(
+{% for i, company in occupation %}
+            (new CV\Company)
+                ->setName('{{ company.name }}')
+                ->setPosition('{{ company.position }}')
+                ->setSince(new \DateTime('{{ company.since }}'))
+                ->setUntil(new \DateTime('{{ company.until }}'))
+                ->setDescription(
+{{ company.description|trim|generate_text_block('"', 5, ".")  }}){% if i == (occupation|length)-1 %});{% else %},{% endif %}
+
+{% endfor %}
+    }
+
+    /**
+     * Languages I speak.
+     * "If you talk to a man in a language he understands, that goes to his head.
+     *      If you talk to him in his own language, that goes to his heart."
+     *           -- Nelson Mandela
+     */
+    public function getLanguages()
+    {
+        return array(
+{% for language in languages %}
+            '{{ language.name }}' => {{ language.level|generate_class_constant('CV\\Language') }},
+{% endfor %}
+        );
+    }
+}
+</code></pre>
+{% endblock %}
