@@ -7,7 +7,6 @@ rodrigo_rigotti_cv:
                 obfuscate_email: true
             contact:
                 name: "Rodrigo Rigotti Mammano"
-                phones: [ "+55 11 98200-3298", "+55 11 3969-3298" ]
                 emails: [ "rodrigo@rodrigorigotti.com" ]
             summary: |
                 Full stack developer with 10+ years of experience.
