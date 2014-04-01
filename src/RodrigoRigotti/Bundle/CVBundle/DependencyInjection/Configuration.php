@@ -27,6 +27,7 @@ class Configuration implements ConfigurationInterface
         
         $rootNode
             ->children()
+                ->scalarNode('default_cv')->end()
                 ->arrayNode('cvs')
                     ->prototype('array')
                         ->children()

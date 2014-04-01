@@ -1,4 +1,5 @@
 rodrigo_rigotti_cv:
+    default_cv: rodrigo_rigotti
     cvs:
         rodrigo_rigotti:
             language: php

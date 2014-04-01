@@ -12,6 +12,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class CVController extends Controller
 {
     /**
+     * @Configuration\Route("/")
+     * @Configuration\Template
+     */
+    public function indexAction()
+    {
+        $defaultCv = $this->container->getParameter('default_cv');
+        $cvs = $this->container->getParameter('cvs');
+        if (!isset($cvs[$defaultCv])) {
+            throw new CVNotFoundException();
+        }
+        return $this->forward('RodrigoRigottiCVBundle:CV:view', array('slug' => $this->container->getParameter('default_cv')));
+    }
+    
+    /**
      * @Configuration\Route("/{slug}", requirements={"slug" = "\w+"})
      * @Configuration\Template
      */
