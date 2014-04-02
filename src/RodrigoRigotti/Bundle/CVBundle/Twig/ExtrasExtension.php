@@ -7,7 +7,8 @@ class ExtrasExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('obfuscate_emails', array($this, 'obfuscateEmailsFilter'))
+            new \Twig_SimpleFilter('obfuscate_emails', array($this, 'obfuscateEmailsFilter')),
+            new \Twig_SimpleFilter('repeat', 'str_repeat'),
         );
     }
     

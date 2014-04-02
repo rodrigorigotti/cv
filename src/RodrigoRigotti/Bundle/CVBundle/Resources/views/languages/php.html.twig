@@ -84,9 +84,13 @@ class {{ contact.name|generate_class_name }} implements CV\CVInterface
 {% if languages|length == 0 %}
         return array();
 {% else %}
+{% set maxlength = 0 %}
+{% for i, language in languages %}
+{% if language.name|length > maxlength %}{% set maxlength = language.name|length %}{% endif %}
+{% endfor %}
         return array(
 {% for i, language in languages %}
-            '{{ language.name }}' => {{ language.level|generate_class_constant('CV\\Language') }}{% if i == (languages|length)-1 %});{% else %},{% endif %}
+            '{{ language.name }}'{{ ' '|repeat(maxlength-(language.name|length)) }} => {{ language.level|generate_class_constant('CV\\Language') }}{% if i == (languages|length)-1 %});{% else %},{% endif %}
 
 {% endfor %}
 {% endif %}

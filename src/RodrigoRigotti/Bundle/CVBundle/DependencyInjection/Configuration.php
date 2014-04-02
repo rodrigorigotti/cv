@@ -12,9 +12,8 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-    private $validLanguages = array(
-        'php', 'js'
-    );
+    private $validLanguages      = array('php', 'js');
+    private $validLanguageLevels = array('basic', 'intermediate', 'advanced', 'fluent', 'native');
     
     /**
      * {@inheritDoc}
@@ -79,7 +78,9 @@ class Configuration implements ConfigurationInterface
                                 ->prototype('array')
                                     ->children()
                                         ->scalarNode('name')->end()
-                                        ->scalarNode('level')->end()
+                                        ->enumNode('level')
+                                            ->values($this->validLanguageLevels)
+                                        ->end()
                                     ->end()
                                 ->end()
                             ->end()
