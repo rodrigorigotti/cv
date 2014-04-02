@@ -1,10 +1,5 @@
 rodrigo_rigotti_cv:
     cvs:
-        renee:
-            language: php
-            contact: 
-                name: "Renee Rodrigues Alves"
-                emails: [ "renee_rodrigues_alves@yahoo.com" ]
         rodrigo_rigotti:
             language: php
             options:
