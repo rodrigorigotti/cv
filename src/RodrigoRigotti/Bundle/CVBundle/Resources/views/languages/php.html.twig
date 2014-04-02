@@ -36,19 +36,14 @@ class {{ contact.name|generate_class_name }} implements CV\CVInterface
      */
     public function getEducation()
     {
-{% if education|length == 0 %}
-        return array();
-{% else %}
-        return array(
-{% for i, institution in education %}
+        return array({% for i, institution in education %}
+
             (new CV\Institution)
                 ->setName('{{ institution.name }}')
                 ->setTitle('{{ institution.title }}')
                 ->setSince(new \DateTime('{{ institution.since }}'))
-                ->setUntil(new \DateTime('{{ institution.until }}')){% if i == (education|length)-1 %});{% else %},{% endif %}
-
-{% endfor %}
-{% endif %}
+                ->setUntil(new \DateTime('{{ institution.until }}')){% if i < (education|length)-1 %},{% endif %}
+{% endfor %});
     }
 
     /**
@@ -56,21 +51,16 @@ class {{ contact.name|generate_class_name }} implements CV\CVInterface
      */
     public function getOccupation()
     {
-{% if occupation|length == 0 %}
-        return array();
-{% else %}
-        return array(
-{% for i, company in occupation %}
+        return array({% for i, company in occupation %}
+
             (new CV\Company)
                 ->setName('{{ company.name }}')
                 ->setPosition('{{ company.position }}')
                 ->setSince(new \DateTime('{{ company.since }}'))
                 ->setUntil(new \DateTime('{{ company.until }}'))
                 ->setDescription(
-{{ company.description|trim|generate_text_block('"', 5, ".")  }}){% if i == (occupation|length)-1 %});{% else %},{% endif %}
-
-{% endfor %}
-{% endif %}
+{{ company.description|trim|generate_text_block('"', 5, ".")  }}){% if i < (occupation|length)-1 %},{% endif %}
+{% endfor %});
     }
 
     /**
@@ -81,19 +71,14 @@ class {{ contact.name|generate_class_name }} implements CV\CVInterface
      */
     public function getLanguages()
     {
-{% if languages|length == 0 %}
-        return array();
-{% else %}
 {% set maxlength = 0 %}
 {% for i, language in languages %}
 {% if language.name|length > maxlength %}{% set maxlength = language.name|length %}{% endif %}
 {% endfor %}
-        return array(
-{% for i, language in languages %}
-            '{{ language.name }}'{{ ' '|repeat(maxlength-(language.name|length)) }} => {{ language.level|generate_class_constant('CV\\Language') }}{% if i == (languages|length)-1 %});{% else %},{% endif %}
+        return array({% for i, language in languages %}
 
-{% endfor %}
-{% endif %}
+            '{{ language.name }}'{{ ' '|repeat(maxlength-(language.name|length)) }} => {{ language.level|generate_class_constant('CV\\Language') }}{% if i < (languages|length)-1 %},{% endif %}
+{% endfor %});
     }
 }
 </code></pre>
