@@ -2,6 +2,10 @@
 
 {% block title %}CV | {{ contact.name }}{% endblock %}
 
+{% block metatags %}
+        <meta name="description" content="{{ summary|trim|replace({"\n": " "}) }}">
+{% endblock %}
+
 {% block stylesheets %}
         <link rel="stylesheet" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
         <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/tomorrow-night.min.css">

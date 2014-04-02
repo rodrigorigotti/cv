@@ -54,6 +54,7 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                             ->end()
                             ->scalarNode('summary')
+                                ->isRequired()
                                 ->defaultNull()
                             ->end()
                             ->arrayNode('education')
