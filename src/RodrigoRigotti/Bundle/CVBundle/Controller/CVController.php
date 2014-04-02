@@ -2,7 +2,6 @@
 
 namespace RodrigoRigotti\Bundle\CVBundle\Controller;
 
-use RodrigoRigotti\Bundle\CVBundle\Exception\CVNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -13,35 +12,43 @@ class CVController extends Controller
 {
     /**
      * @Configuration\Route("/")
-     * @Configuration\Template
      */
     public function indexAction()
     {
         $defaultCv = $this->container->getParameter('default_cv');
         $cvs = $this->container->getParameter('cvs');
         if (!isset($cvs[$defaultCv])) {
-            throw new CVNotFoundException();
+            return $this->generateCVNotFoundException($defaultCv);
         }
-        return $this->forward('RodrigoRigottiCVBundle:CV:view', array('slug' => $this->container->getParameter('default_cv')));
+        return $this->forward(
+            'RodrigoRigottiCVBundle:CV:view',
+            array('slug' => $defaultCv));
     }
     
     /**
      * @Configuration\Route("/{slug}", requirements={"slug" = "\w+"})
-     * @Configuration\Template
      */
     public function viewAction($slug)
     {
         $cvs = $this->container->getParameter('cvs');
         if (!isset($cvs[$slug])) {
-            throw new CVNotFoundException();
+            return $this->generateCVNotFoundException($slug);
         }
-        return array(
-            'options'    => $cvs[$slug]['options'],
-            'language'   => $cvs[$slug]['language'],
-            'contact'    => $cvs[$slug]['contact'],
-            'summary'    => $cvs[$slug]['summary'],
-            'education'  => $cvs[$slug]['education'],
-            'occupation' => $cvs[$slug]['occupation'],
-            'languages'  => $cvs[$slug]['languages']);
+        $cv = $cvs[$slug];
+        return $this->render('RodrigoRigottiCVBundle:CV:view.html.twig', array(
+            'options'    => $cv['options'],
+            'language'   => $cv['language'],
+            'contact'    => $cv['contact'],
+            'summary'    => $cv['summary'],
+            'education'  => $cv['education'],
+            'occupation' => $cv['occupation'],
+            'languages'  => $cv['languages']));
+    }
+    
+    private function generateCVNotFoundException($slug)
+    {
+        return $this->render('RodrigoRigottiCVBundle:exceptions:cvNotFound.html.twig', array(
+            'slug' => $slug
+        ));
     }
 }

@@ -68,3 +68,6 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+rodrigo_rigotti_cv:
+    default_cv: rodrigo_rigotti

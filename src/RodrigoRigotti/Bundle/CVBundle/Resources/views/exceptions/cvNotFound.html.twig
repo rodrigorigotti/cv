@@ -1,0 +1,10 @@
+{% extends "RodrigoRigottiCVBundle:exceptions:base.html.twig" %}
+
+{% block body %}
+<pre><code class="hljs php">
+{{ '<?php'|e }}
+
+throw new \Exception("CV for user '{{ slug }}' not found!");
+
+</pre>
+{% endblock %}

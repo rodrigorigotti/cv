@@ -23,12 +23,8 @@ class {{ contact.name|generate_class_name }} implements CV\CVInterface
      */
     public function getSummary()
     {
-{% if summary|length == 0 %}
-        return "";
-{% else %}
         return
 {{ summary|trim|generate_text_block('"', 3, ".") }};
-{% endif %}
     }
 
     /**
@@ -36,9 +32,6 @@ class {{ contact.name|generate_class_name }} implements CV\CVInterface
      */
     public function getEducation()
     {
-{% if education|length == 0 %}
-        return array();
-{% else %}
         return array(
 {% for i, institution in education %}
             (new CV\Institution)
@@ -48,7 +41,6 @@ class {{ contact.name|generate_class_name }} implements CV\CVInterface
                 ->setUntil(new \DateTime('{{ institution.until }}')){% if i == (education|length)-1 %});{% else %},{% endif %}
 
 {% endfor %}
-{% endif %}
     }
 
     /**
@@ -56,9 +48,6 @@ class {{ contact.name|generate_class_name }} implements CV\CVInterface
      */
     public function getOccupation()
     {
-{% if occupation|length == 0 %}
-        return array();
-{% else %}
         return array(
 {% for i, company in occupation %}
             (new CV\Company)
@@ -70,7 +59,6 @@ class {{ contact.name|generate_class_name }} implements CV\CVInterface
 {{ company.description|trim|generate_text_block('"', 5, ".")  }}){% if i == (occupation|length)-1 %});{% else %},{% endif %}
 
 {% endfor %}
-{% endif %}
     }
 
     /**
@@ -81,15 +69,11 @@ class {{ contact.name|generate_class_name }} implements CV\CVInterface
      */
     public function getLanguages()
     {
-{% if languages|length == 0 %}
-        return array();
-{% else %}
         return array(
-{% for i, language in languages %}
-            '{{ language.name }}' => {{ language.level|generate_class_constant('CV\\Language') }}{% if i == (languages|length)-1 %});{% else %},{% endif %}
-
+{% for language in languages %}
+            '{{ language.name }}' => {{ language.level|generate_class_constant('CV\\Language') }},
 {% endfor %}
-{% endif %}
+        );
     }
 }
 </code></pre>

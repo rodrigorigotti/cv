@@ -2,7 +2,6 @@
 
 namespace RodrigoRigotti\Bundle\CVBundle\DependencyInjection;
 
-use RodrigoRigotti\Bundle\CVBundle\Exception\InvalidLanguageException;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -13,7 +12,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-    private $languageMappings = array(
+    private $validLanguages = array(
         'php', 'js'
     );
     
@@ -27,12 +26,15 @@ class Configuration implements ConfigurationInterface
         
         $rootNode
             ->children()
-                ->scalarNode('default_cv')->end()
+                ->scalarNode('default_cv')
+                    ->isRequired()
+                ->end()
                 ->arrayNode('cvs')
                     ->prototype('array')
                         ->children()
                             ->enumNode('language')
-                                ->values($this->getValidLanguages())
+                                ->isRequired()
+                                ->values($this->validLanguages)
                             ->end()
                             ->arrayNode('options')
                                 ->prototype('array')
@@ -42,13 +44,16 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                             ->end()
                             ->arrayNode('contact')
+                                ->isRequired()
                                 ->children()
                                     ->scalarNode('name')->end()
                                     ->arrayNode('phones')->prototype('scalar')->end()->end()
                                     ->arrayNode('emails')->prototype('scalar')->end()->end()
                                 ->end()
                             ->end()
-                            ->scalarNode('summary')->end()
+                            ->scalarNode('summary')
+                                ->defaultNull()
+                            ->end()
                             ->arrayNode('education')
                                 ->prototype('array')
                                     ->children()
@@ -83,28 +88,5 @@ class Configuration implements ConfigurationInterface
                 ->end();    
 
         return $treeBuilder;
-    }
-    
-    private function validateLanguage($language)
-    {
-        if (isset($this->languageMappings[$language])) {
-            return $language;
-        }
-        foreach ($this->languageMappings as $mapped => $mappings) {
-            if (in_array($language, $mappings)) {
-                return $mapped;
-            }
-        }
-        throw new InvalidLanguageException("The selected language ('$language') is invalid or not yet supported.");
-    }
-    
-    private function getValidLanguages()
-    {
-        $languages = array();
-//        foreach ($this->languageMappings as $mapped => $mappings) {
-//            $languages = array_merge($languages, array($mapped), $mappings);
-//        }
-        $languages = $this->languageMappings;
-        return $languages;
     }
 }
