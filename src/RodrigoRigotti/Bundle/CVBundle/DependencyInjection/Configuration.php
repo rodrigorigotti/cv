@@ -25,6 +25,9 @@ class Configuration implements ConfigurationInterface
         
         $rootNode
             ->children()
+                ->scalarNode('copyright')
+                    ->isRequired()
+                ->end()
                 ->scalarNode('default_cv')
                     ->isRequired()
                 ->end()

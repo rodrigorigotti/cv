@@ -36,6 +36,7 @@ class CVController extends Controller
         }
         $cv = $cvs[$slug];
         return $this->render('RodrigoRigottiCVBundle:CV:view.html.twig', array(
+            'copyright'  => $this->container->getParameter('copyright'),
             'options'    => $cv['options'],
             'language'   => $cv['language'],
             'contact'    => $cv['contact'],
