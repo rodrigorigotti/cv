@@ -12,7 +12,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-    private $validLanguages      = array('php', 'js');
+    private $validLanguages      = array('php', 'js', 'scala');
     private $validLanguageLevels = array('basic', 'intermediate', 'advanced', 'fluent', 'native');
     
     /**

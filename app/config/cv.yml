@@ -63,3 +63,11 @@ rodrigo_rigotti_cv:
                   level: native
                 - name: english
                   level: advanced
+        felipe_hummel:
+            language: scala
+            options:
+                obfuscate_email: true
+            contact:
+                name: "Felipe Hummel"
+                emails: [ "hummel@busk.com" ]
+            summary: ~
