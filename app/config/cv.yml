@@ -1,5 +1,5 @@
 rodrigo_rigotti_cv:
-    copyright: © 2014, Rodrigo Rigotti
+    copyright:
     cvs:
         rodrigo_rigotti:
             language: php
@@ -7,7 +7,7 @@ rodrigo_rigotti_cv:
                 obfuscate_email: true
             contact:
                 name: "Rodrigo Rigotti Mammano"
-                emails: [ "rodrigo@rodrigorigotti.com" ]
+                emails: [ "eu@rodrigorigotti.com" ]
             summary: |
                 Full stack developer with 10+ years of experience.
                 Experience with both front-end (UI and UX) and back-end development (programming, business logic and APIs), being PHP my main programming language (whether pure or frameworks – preferably Symfony 2, also Zend Framework 1/2 and Yii) and MySQL (under Doctrine 2 or not) my main database technology (database modeling, data extraction, SQL optimization).
@@ -19,8 +19,13 @@ rodrigo_rigotti_cv:
                 - name: Universidade de São Paulo
                   title: Bacharel em Sistemas de Informação
                   since: 2010-01
-                  until: 2014-12
+                  until: 2015-12
             occupation:
+                - name:     Busk
+                  position: Senior PHP Developer / Lead PHP Developer
+                  since:    2014-04
+                  description: |
+                    To be filled. :)
                 - name:     UpLexis
                   position: Senior PHP Developer
                   since:    2012-12

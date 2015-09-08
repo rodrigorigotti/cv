@@ -57,7 +57,9 @@ class {{ contact.name|generate_class_name }} implements CV\CVInterface
                 ->setName('{{ company.name }}')
                 ->setPosition('{{ company.position }}')
                 ->setSince(new \DateTime('{{ company.since }}'))
+{% if company.until %}
                 ->setUntil(new \DateTime('{{ company.until }}'))
+{% endif %}
                 ->setDescription(
 {{ company.description|trim|generate_text_block('"', 5, ".")  }}){% if i < (occupation|length)-1 %},{% endif %}
 {% endfor %});
@@ -82,7 +84,7 @@ class {{ contact.name|generate_class_name }} implements CV\CVInterface
     }
 }
 
-// {{ copyright }}
+// © 2014–{{ "now"|date("Y") }}, Rodrigo Rigotti
 
 
 

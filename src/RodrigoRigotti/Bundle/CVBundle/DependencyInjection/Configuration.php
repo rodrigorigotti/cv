@@ -73,7 +73,7 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode('name')->end()
                                         ->scalarNode('position')->end()
                                         ->scalarNode('since')->end()
-                                        ->scalarNode('until')->end()
+                                        ->scalarNode('until')->defaultNull()->end()
                                         ->scalarNode('description')->end()
                                     ->end()
                                 ->end()
